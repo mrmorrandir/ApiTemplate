@@ -1,7 +1,5 @@
 using System.Reflection;
 using ApiTemplate.Application.Common.Behaviours;
-using FluentValidation;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ApiTemplate.Application;
@@ -16,7 +14,7 @@ public static class DependencyInjection
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
-        
+
         return services;
     }
 }

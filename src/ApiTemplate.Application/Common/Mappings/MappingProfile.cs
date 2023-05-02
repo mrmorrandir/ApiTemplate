@@ -14,11 +14,14 @@ public class MappingProfile : Profile
         var mapFromType = typeof(IMapFrom<>);
         var mapToType = typeof(IMapTo<>);
         const string mappingMethodName = nameof(IMapFrom<object>.Mapping); // "Mapping" same for IMapFrom and IMapTo   
-        
-        bool HasInterface(Type t) => t.IsGenericType && (t.GetGenericTypeDefinition() == mapFromType || t.GetGenericTypeDefinition() == mapToType);
-        
+
+        bool HasInterface(Type t)
+        {
+            return t.IsGenericType && (t.GetGenericTypeDefinition() == mapFromType || t.GetGenericTypeDefinition() == mapToType);
+        }
+
         var types = assembly.GetExportedTypes().Where(t => t.GetInterfaces().Any(HasInterface)).ToList();
-        var argumentTypes = new Type[] { typeof(Profile) };
+        var argumentTypes = new[] { typeof(Profile) };
         foreach (var type in types)
         {
             var instance = Activator.CreateInstance(type);
@@ -31,11 +34,8 @@ public class MappingProfile : Profile
             {
                 var interfaces = type.GetInterfaces().Where(HasInterface).ToList();
                 if (interfaces.Count <= 0) continue;
-                foreach (var @interface in interfaces)
-                {
-                    var interfaceMethodInfo = @interface.GetMethod(mappingMethodName, argumentTypes);
+                foreach (var interfaceMethodInfo in interfaces.Select(@interface => @interface.GetMethod(mappingMethodName, argumentTypes)))
                     interfaceMethodInfo?.Invoke(instance, new object[] { this });
-                }
             }
         }
     }
