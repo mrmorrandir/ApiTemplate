@@ -2,6 +2,11 @@ namespace ApiTemplate.Application.Common;
 
 public class PaginatedList<T>
 {
+    public int? Offset { get; }
+    public int? Limit { get; }
+    public int Total { get; }
+    public List<T> Items { get; }
+
     public PaginatedList(List<T> items, int? offset, int? limit, int total)
     {
         Items = items;
@@ -9,11 +14,6 @@ public class PaginatedList<T>
         Limit = limit;
         Total = total;
     }
-
-    public int? Offset { get; }
-    public int? Limit { get; }
-    public int Total { get; }
-    public List<T> Items { get; }
 
     public static async Task<PaginatedList<T>> CreateAsync(IQueryable<T> source, int? offset = null, int? limit = null, CancellationToken cancellationToken = default)
     {
