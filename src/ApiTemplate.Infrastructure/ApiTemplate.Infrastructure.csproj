@@ -25,12 +25,23 @@
 
     <ItemGroup>
       <Folder Include="Migrations\" />
-      <Folder Include="Projections\" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\ApiTemplate.Application\ApiTemplate.Application.csproj" />
       <ProjectReference Include="..\ApiTemplate.Domain\ApiTemplate.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Projections\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Projections\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Projections\**" />
     </ItemGroup>
 
 </Project>
