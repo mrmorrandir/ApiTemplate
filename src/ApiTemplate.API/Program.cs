@@ -57,7 +57,7 @@ var basePath = app.Configuration["BASE_PATH"];
 app.UseForwardedHeaders();
 
 // Some information about the application.
-var logger = app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("DPS2.Processes.API");
+var logger = app.Services.GetRequiredService<ILoggerFactory>().CreateLogger("ApiTemplate.API");
 logger.LogInformation("Application staring with environment {Environment} on base path {basePath}",
     app.Environment.EnvironmentName, basePath);
 
@@ -70,9 +70,13 @@ app.UseSwaggerUI();
 
 app.UseCors(corsPolicy);
 
+app.UseRouting();
 app.UseAuthorization();
-
-app.MapControllers();
+app.UseEndpoints(config =>
+{
+    config.MapControllers();
+    config.Map("/", context => Task.Run(() => context.Response.Redirect("/swagger")));
+});
 
 app.Run();
 
