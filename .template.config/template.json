@@ -1,0 +1,25 @@
+{
+  "author": "Andreas Naumann",
+  "name": "ApiTemplate",
+  "description": "A template for creating a ASP.NET Core Web API with CQRS and MediatR",
+  "identity": "AndreasNaumann.ApiTemplate.1.0",
+  "shortName": "apitemplate",
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "sourceName": "ApiTemplate",
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net6"
+        }
+      ],
+      "defaultValue": "net6"
+    }
+  }
+}
