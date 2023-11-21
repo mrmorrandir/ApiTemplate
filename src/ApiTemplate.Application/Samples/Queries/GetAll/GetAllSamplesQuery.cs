@@ -1,6 +1,4 @@
-﻿using ApiTemplate.Application.Common;
-using ApiTemplate.Application.Common.Mappings;
-using ApiTemplate.Application.Interfaces;
+﻿using ApiTemplate.Application.Interfaces;
 using AutoMapper.QueryableExtensions;
 
 namespace ApiTemplate.Application.Samples.Queries.GetAll;

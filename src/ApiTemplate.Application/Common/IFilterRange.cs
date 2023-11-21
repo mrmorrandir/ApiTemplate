@@ -1,5 +1,3 @@
-using System.Globalization;
-
 namespace ApiTemplate.Application.Common;
 
 public interface IFilterRange<T> where T : struct

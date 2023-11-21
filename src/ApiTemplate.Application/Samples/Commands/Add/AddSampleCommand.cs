@@ -1,4 +1,5 @@
-﻿using ApiTemplate.Application.Interfaces;
+﻿using ApiTemplate.Application.Common.Mappings;
+using ApiTemplate.Application.Interfaces;
 using ApiTemplate.Domain;
 
 namespace ApiTemplate.Application.Samples.Commands.Add;
